@@ -8,15 +8,16 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'React'
+      name: 'React',
+      openStatus: false
     };
   }
 
   render() {
     return (
       <div>
-        <Heading title="Er leiligheta åpen?" />
-        <OpenBadge status={true} />
+        <Heading title="Er det åpent?" />
+        <OpenBadge status={this.state.openStatus} />
       </div>
     );
   }
