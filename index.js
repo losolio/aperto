@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import moment from "moment-timezone"
 import Heading from "./Heading";
 import OpenBadge from "./OpenBadge";
 import "./style.css";
@@ -8,8 +9,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: "React",
-      openStatus: false
+      nameOfPlace: "Leiligheta",
+      openNow: false,
+      nextOpen: Date.now()
     };
 
     const openingTimes = {
@@ -27,10 +29,13 @@ class App extends Component {
   }
 
   render() {
+    const title = `Er ${this.state.nameOfPlace} åpen`;
     return (
+      
       <div>
-        <Heading title="Er det åpent?" />
-        <OpenBadge status={this.state.openStatus} />
+        <Heading title={title} />
+        <OpenBadge status={this.state.openNow} />
+        <div>{moment(this.props.nextOpen).format('DD.MM.YYYY HH:MM')}</div>
       </div>
     );
   }
