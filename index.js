@@ -30,12 +30,17 @@ class App extends Component {
 
   render() {
     const title = `Er ${this.state.nameOfPlace} åpen`;
+    var locale = window.navigator.userLanguage || window.navigator.language;
+    moment.locale(locale);
+
     return (
       
       <div>
         <Heading title={title} />
         <OpenBadge status={this.state.openNow} />
-        <div>{moment(this.props.nextOpen).format('DD.MM.YYYY HH:MM')}</div>
+        <p>Locale: {locale}</p>
+        <p>Now: {moment(Date.now()).format('DD.MM.YYYY HH:MM')}</p>
+        <p>{moment(this.props.nextOpen).format('DD.MM.YYYY HH:MM')}</p>
       </div>
     );
   }
